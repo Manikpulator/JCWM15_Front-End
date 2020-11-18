@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="day_01_css.css">
+    <style>
+        /* h2 {
+            color: blue
+        } */
+        /* h1, h2, h5 {
+            color: red;
+        }
+        h4 {
+            color: orange
+        }
+
+        p {
+            color: red
+        }
+
+        #avanza {
+            color: greenyellow
+        }
+
+        .mobil {
+            color: blue;
+        }
+        a[href] {color: red;} */
+
+        /* descendant selector */
+        /* main h2 {
+            color: red;
+            font-family: Impact;
+        }
+
+        header h2,
+        footer h2 {
+            color: green;
+            font-family: Arial;
+        } */
+
+        /* child selector */
+        main > div > p {
+            color: red;
+            font-family: Impact;
+            font-size: 30px
+        }
+    </style>
+</head>
+
+<body>
+    <!-- inline style = style dilakukan di dalam satu line atau di dalam tag nya secara langsung -->
+    <!-- <h1 style="color: red;">Ini heading inline style</h1> -->
+
+    <!-- internal style = style dilakukan di dalam satu file (dimasukan ke dalam tag style yang ada di head) -->
+    <!-- <h2>Ini heading internal style</h2> -->
+
+    <!-- external file = style dilakukan di luar file dan diimport melalui head-->
+    <!-- <h3>Ini heading external file</h3> -->
+    <!-- <h1>Ini h1</h1>
+    <h2>Ini h2</h2>
+    <h5>Ini h3</h5>
+
+    <h4>Halo</h4>
+    <p>Hai</p>
+    <p class="mobil" id="avanza">Ini Avanza</p>
+    <p class="mobil" id="alya">Ini Alya</p>
+    <p><a href="#">Ini link</a> -->
+
+    <!-- descendant selector-->
+    <!-- <header>
+        <h2>Ini header</h2>
+    </header>
+    <main>
+        <h2>Ini konten</h2>
+    </main>
+    <footer>
+        <h2>Ini footer</h2>
+    </footer> -->
+
+    <!-- child selector -->
+    <main>
+        <p>di dalam main</p>
+        <div>
+            <p>dalam div dalam main</p>
+        </div>
+    </main>
+
+</body>
+
+</html>
