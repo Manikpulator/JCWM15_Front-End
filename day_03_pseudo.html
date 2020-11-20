@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pseudo</title>
+    <style>
+        /* visited and link
+        a:visited {
+            color: purple;
+        }
+
+        a:link {
+            color: red;
+        } */
+        /* hover
+        div {
+            text-align: center;
+            color: purple;
+            transition: 2s;
+            width: 300px;
+            background-color: yellowgreen;
+            margin: 50px auto;
+        }
+
+        div:hover {
+            color: white;
+            background-color: purple;
+            border-radius: 25px;
+            margin: 20px auto;
+        } */
+        /* focus and active
+        input:active {
+            background-color: salmon;
+        } */
+        /* pseudo child */
+        /* h2:last-child {
+            background-color: green;
+        }
+
+        h2:first-child {
+            background-color: red;
+        } */
+
+        /* h2:nth-child(4) {
+            background-color: yellow;
+        } */
+        /* h2:nth-child(even) {
+            background-color: lightblue;
+        } */
+        /* nth-child() */
+        h2:nth-of-type(1) {
+            background-color: red;
+        }
+
+        h2:nth-of-type(2) {
+            background-color: green;
+        }
+
+        h2:nth-of-type(3) {
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <a href="#" target="_blank">Lihat target sebelum dan sesudah di klik</a> -->
+    <!-- <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate veniam ipsam, temporibus et possimus iure
+        harum eos accusamus minima aliquam rerum tempore quas voluptatibus illo debitis perferendis est hic aspernatur!
+    </div> -->
+    <!-- <div><input type="number" /></div>
+    <br>
+    <div><input type="number" /></div>
+    <br>
+    <div><input type="number" /></div> -->
+    <!-- <h2>Anak ke-sebelum 1</h2> -->
+    <h2>nth-of-type(1)</h2>
+    <h2>nth-of-type(2)</h2>
+    <h2>nth-of-type(3)</h2>
+</body>
+
+</html>
