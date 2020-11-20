@@ -1,9 +1,0 @@
-CSS Box Model
--Margin : 
-    -Margin adalah untuk mengatur jarak antara elemen yang satu dengan eleman yang lain
-    -Overlapping Margin horizontal dengan vertical berbeda
-    -negatif margin akan mendorong ke arah sebaliknya
-    -shorthand (1, 2, 3 ,4 value)
--Padding : Padding adalah untuk mengatur jarak antara border dengan isi dari elemen tersebut 
--Border : Border adalah untuk memberi style batasan pada suatu elemen
--Box Sizing : Box Sizing adalah metode untuk menentukan ukuran dari suatu elemen

@@ -1,6 +1,0 @@
-Position:
-    -static : adalah default position dari setiap elemen
-    -non-static:
-        -relative : adalah membuat suatu element keluar dari flow dan akan bergeser dari posisi semula
-        -absolute : adalah membuat suatu element keluar dari flow dan bergantung kepada parent terdekat yang non-static
-        -fixed : adalah membuat suatu element keleuar dari flow dan bergantung kepada body
