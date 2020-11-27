@@ -1,34 +1,55 @@
 import React from 'react'
 import Axios from 'axios'
+import {
+    Card,
+    Button
+} from 'react-bootstrap'
+
+let URL = 'http://newsapi.org/v2/top-headlines?country=id&apiKey='
+let KEY = 'fbbbc3d3c42b46c4ac7be648a268cf2c'
 
 class App extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            dataKu: []
+            news: []
         }
     }
 
     componentDidMount() {
-        Axios.get('https://jsonplaceholder.typicode.com/posts')
+        Axios.get(URL + KEY)
             .then((res) => {
                 console.log(res)
-                this.setState({ dataKu: res.data })
+                this.setState({ news: res.data.articles })
             })
             .catch((err) => console.log(err))
     }
 
-    render() {
-        const data = this.state.dataKu.map((item, index) => {
-            var id_title = [item.id, item.title].join(" - ");
-            return <li key={index}>{id_title}</li>;
+    showCard = () => {
+        return this.state.news.map((item, index) => {
+            return (
+                <Card style={{ width: '18rem', marginRight: '15px' }}>
+                    <Card.Img variant="top" src={item.urlToImage} />
+                    <Card.Body>
+                        <Card.Title>{item.title}</Card.Title>
+                        <Card.Text>
+                            {item.description}
+                        </Card.Text>
+                        <Button href={item.url} variant="primary">Read More</Button>
+                    </Card.Body>
+                </Card>
+            )
         })
+    }
 
-        console.log(this.state.dataKu)
+    render() {
+        console.log(this.state.news)
         return (
             <div>
-                <h1>Hello Axios</h1>
-                {data}
+                <h1>NEWS API</h1>
+                <div style={{ display: "flex", flexWrap: 'wrap' }}>
+                    {this.showCard()}
+                </div>
             </div>
         )
     }
