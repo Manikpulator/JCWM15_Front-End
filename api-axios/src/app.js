@@ -10,12 +10,14 @@ import { Switch, Route } from 'react-router-dom'
 import Content1 from './page/content1'
 import Content2 from './page/content2'
 import Home from './page/home'
+import NotFound from './page/404NotFound'
+
 
 class App extends React.Component {
     // constructor(props) {
     //     super(props)
     //     this.state = {
-    //         user: 'Orang Asing'
+        //         user: 'Orang Asing'
     //     }
     // }
 
@@ -27,6 +29,7 @@ class App extends React.Component {
                     <Route path='/' component={Home} exact />
                     <Route path='/content1' component={Content1} />
                     <Route path='/content2' component={Content2} />
+                    <Route path='*' component={NotFound} />
                 </Switch>
             </div>
         )
