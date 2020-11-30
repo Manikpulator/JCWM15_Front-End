@@ -1,58 +1,67 @@
 import React from 'react'
 import Axios from 'axios'
 import {
-    Card,
     Button
 } from 'react-bootstrap'
-
-let URL = 'http://newsapi.org/v2/top-headlines?country=id&apiKey='
-let KEY = 'fbbbc3d3c42b46c4ac7be648a268cf2c'
 
 class App extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            news: []
+            dbUsers: []
         }
     }
 
     componentDidMount() {
-        Axios.get(URL + KEY)
+        Axios.get('http://localhost:2000/users')
             .then((res) => {
-                console.log(res)
-                this.setState({ news: res.data.articles })
+                console.log(res.data)
+                this.setState({ dbUsers: res.data })
             })
             .catch((err) => console.log(err))
     }
 
-    showCard = () => {
-        return this.state.news.map((item, index) => {
-            return (
-                <Card style={{ width: '18rem', marginRight: '15px' }}>
-                    <Card.Img variant="top" src={item.urlToImage} />
-                    <Card.Body>
-                        <Card.Title>{item.title}</Card.Title>
-                        <Card.Text>
-                            {item.description}
-                        </Card.Text>
-                        <Button href={item.url} variant="primary">Read More</Button>
-                    </Card.Body>
-                </Card>
-            )
+    handlePost = () => {
+        // console.log('ini post')
+        Axios.post('http://localhost:2000/users', {
+            first_name: 'Rakha',
+            last_name: 'Adhi',
+            email: 'rakhaa34@gmail.com'
         })
+            .then((res) => console.log(res.data))
+            .catch((err) => console.log(err))
+    }
+
+    handleDelete = () => {
+        Axios.delete('http://localhost:2000/users/2')
+            .then((res) => console.log(res.data))
+            .catch((err) => console.log(err))
+    }
+
+    handleEdit = () => {
+        Axios.put('http://localhost:2000/users/4', {
+            first_name: 'Anjas',
+            last_name: 'Hardiansyah',
+            email: 'anjash@yahoo.com'
+        })
+        .then((res) => console.log(res.data))
+        .catch((err) => console.log(err))
     }
 
     render() {
-        console.log(this.state.news)
+        console.log(this.state.dbUsers)
         return (
             <div>
-                <h1>NEWS API</h1>
-                <div style={{ display: "flex", flexWrap: 'wrap' }}>
-                    {this.showCard()}
-                </div>
+                <h1>Hello JSON-SERVER</h1>
+                <Button onClick={this.handlePost} >POST</Button>
+                <Button onClick={this.handleDelete} >DELETE</Button>
+                <Button onClick={this.handleEdit} >EDIT</Button>
             </div>
         )
     }
 }
 
 export default App
+
+// untuk mengubah object menjadi json memakai JSON.stringify(nama/var object yang mau diubah)
+// sebaliknya, dari json ke object memakai JSON.parse(nama/var object yang mau diubah)
