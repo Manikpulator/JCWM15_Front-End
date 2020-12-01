@@ -6,6 +6,12 @@ import {
     Form
 } from 'react-bootstrap'
 
+// import connect
+import { connect } from 'react-redux'
+
+// import action
+import { login } from '../action'
+
 class Login extends React.Component {
     constructor(props){
         super(props)
@@ -27,7 +33,7 @@ class Login extends React.Component {
             
             if(res.data.length === 0) return alert('Invalid Username or Password')
 
-            this.setState({ users: res.data[0]})
+            this.props.login(res.data[0])
         })
         .catch((err) => console.log(err))
     }
@@ -61,4 +67,4 @@ const styles = {
     }
 }
 
-export default Login
+export default connect(null, { login })(Login)

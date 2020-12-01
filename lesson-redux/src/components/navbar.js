@@ -5,6 +5,9 @@ import {
     Dropdown
 } from 'react-bootstrap'
 
+// import connect
+import { connect } from 'react-redux'
+
 // import link react route dom
 import { Link } from 'react-router-dom'
 
@@ -28,7 +31,7 @@ class Navigation extends React.Component {
                     </Nav>
                     <Dropdown style={{ marginRight: '40px' }}>
                         <Dropdown.Toggle variant="success" id="dropdown-basic">
-                            Username
+                            {this.props.username ? this.props.username : 'Username'}
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
                             <Dropdown.Item as={Link} to='/login' >Login</Dropdown.Item>
@@ -41,4 +44,10 @@ class Navigation extends React.Component {
     }
 }
 
-export default Navigation
+const mapStateToProps = (state) => {
+    return {
+        username: state.user.username
+    }
+}
+
+export default connect(mapStateToProps)(Navigation)
