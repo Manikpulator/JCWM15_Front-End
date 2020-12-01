@@ -2,10 +2,7 @@ import React from 'react'
 import {
     Navbar,
     Nav,
-    NavDropdown,
-    Form,
-    FormControl,
-    Button
+    Dropdown
 } from 'react-bootstrap'
 
 // import link react route dom
@@ -28,18 +25,16 @@ class Navigation extends React.Component {
                         <Nav.Link>
                             <Link to='/content2' >Content 2</Link>
                         </Nav.Link>
-                        {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                        </NavDropdown> */}
                     </Nav>
-                    <Form inline>
-                        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                        <Button variant="outline-success">Search</Button>
-                    </Form>
+                    <Dropdown style={{ marginRight: '40px' }}>
+                        <Dropdown.Toggle variant="success" id="dropdown-basic">
+                            Username
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu>
+                            <Dropdown.Item as={Link} to='/login' >Login</Dropdown.Item>
+                            <Dropdown.Item>Register</Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
                 </Navbar.Collapse>
             </Navbar>
         )

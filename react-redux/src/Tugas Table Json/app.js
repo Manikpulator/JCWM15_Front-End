@@ -15,7 +15,7 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        Axios.get('http://localhost:2000/users')
+        Axios.get('http://localhost:2000/tablejson')
             .then((res) => {
                 console.log(res.data)
                 this.setState({ dbUsers: res.data })

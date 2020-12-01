@@ -1,5 +1,5 @@
 {
-  "users": [
+  "tablejson": [
     {
       "id": 1,
       "first_name": "Robert",
@@ -29,24 +29,20 @@
       "first_name": "Roger",
       "last_name": "Bacon",
       "email": "rogerbacon12@yahoo.com"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "frengky",
+      "password": "1234",
+      "email": "frengky@gmail.com"
     },
     {
-      "id": 6,
-      "first_name": "Franky",
-      "last_name": "Sihombing",
-      "email": "frankyshg77@gmail.com"
-    },
-    {
-      "first_name": "Andhika",
-      "last_name": "Jeremia",
-      "email": "andhikaj44@gmail.com",
-      "id": 7
-    },
-    {
-      "first_name": "Fah",
-      "last_name": "Mi",
-      "email": "fahmi123@gmail.com",
-      "id": 8
+      "id": 2,
+      "username": "sihombing",
+      "password": "1234",
+      "email": "sihombing@gmail.com"
     }
   ]
 }
