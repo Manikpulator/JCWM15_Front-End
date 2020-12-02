@@ -11,7 +11,15 @@ import { connect } from 'react-redux'
 // import link react route dom
 import { Link } from 'react-router-dom'
 
+// import action logout
+import { logout } from '../action'
+
 class Navigation extends React.Component {
+    handleLogout = () => {
+        this.props.logout()
+        localStorage.removeItem('username')
+    }
+
     render() {
         return (
             <Navbar bg="light" expand="lg">
@@ -34,8 +42,15 @@ class Navigation extends React.Component {
                             {this.props.username ? this.props.username : 'Username'}
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
-                            <Dropdown.Item as={Link} to='/login' >Login</Dropdown.Item>
-                            <Dropdown.Item>Register</Dropdown.Item>
+                            {this.props.username
+                                ?
+                                <Dropdown.Item onClick={this.handleLogout}>Logout</Dropdown.Item>
+                                :
+                                <>
+                                    <Dropdown.Item as={Link} to='/login' >Login</Dropdown.Item>
+                                    <Dropdown.Item>Register</Dropdown.Item>
+                                </>
+                            }
                         </Dropdown.Menu>
                     </Dropdown>
                 </Navbar.Collapse>
@@ -50,4 +65,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(Navigation)
+export default connect(mapStateToProps, { logout })(Navigation)

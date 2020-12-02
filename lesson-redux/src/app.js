@@ -1,4 +1,8 @@
 import React from 'react'
+import Axios from 'axios'
+
+// import connect react-redux
+import { connect } from 'react-redux'
 
 // import component
 import Navigation from './components/navbar'
@@ -13,14 +17,15 @@ import Home from './page/home'
 import Login from './page/login'
 import NotFound from './page/404NotFound'
 
+// import action login
+import { login } from './action'
 
 class App extends React.Component {
-    // constructor(props) {
-    //     super(props)
-    //     this.state = {
-        //         user: 'Orang Asing'
-    //     }
-    // }
+    componentDidMount(){
+        Axios.get(`http://localhost:2000/users?username=${localStorage.username}`)
+        .then((res) => this.props.login(res.data[0]))
+        .catch((err) => console.log(err))
+    }
 
     render() {
         return (
@@ -38,4 +43,4 @@ class App extends React.Component {
     }
 }
 
-export default App
+export default connect(null, { login }) (App)

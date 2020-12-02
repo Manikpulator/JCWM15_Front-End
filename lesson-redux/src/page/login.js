@@ -6,6 +6,9 @@ import {
     Form
 } from 'react-bootstrap'
 
+// import Redirect
+import { Redirect } from 'react-router-dom'
+
 // import connect
 import { connect } from 'react-redux'
 
@@ -13,7 +16,7 @@ import { connect } from 'react-redux'
 import { login } from '../action'
 
 class Login extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {
             users: []
@@ -28,18 +31,20 @@ class Login extends React.Component {
         if (!username || !password) return alert('Please input all form')
 
         Axios.get(`http://localhost:2000/users?username=${username}&password=${password}`)
-        .then((res) => {
-            console.log(res.data)
-            
-            if(res.data.length === 0) return alert('Invalid Username or Password')
+            .then((res) => {
+                console.log(res.data)
 
-            this.props.login(res.data[0])
-        })
-        .catch((err) => console.log(err))
+                if (res.data.length === 0) return alert('Invalid Username or Password')
+
+                this.props.login(res.data[0])
+                // localStorage.setItem('username', username)
+                localStorage.username = username
+            })
+            .catch((err) => console.log(err))
     }
 
     render() {
-        console.log(this.state.users)
+        if (this.props.username) return <Redirect to='/' />
         return (
             <div style={styles.container}>
                 <h1>Login</h1>
@@ -67,4 +72,10 @@ const styles = {
     }
 }
 
-export default connect(null, { login })(Login)
+const mapStateToProps = (state) => {
+    return {
+        username: state.user.username
+    }
+}
+
+export default connect(mapStateToProps, { login })(Login)
