@@ -1,5 +1,7 @@
 import React from 'react'
+import Axios from 'axios'
 import { Route, Switch } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 // import component
 import Navigation from './components/navigation'
@@ -9,13 +11,25 @@ import Home from './pages/home'
 import LoginPage from './pages/loginPage'
 import RegisterPage from './pages/registerPage'
 
+// import action login
+import { login } from './actions'
+
 class App extends React.Component {
+    componentDidMount() {
+        Axios.get(`http://localhost:2000/users/${localStorage.id}`)
+            .then((res) => {
+                console.log(res.data);
+                this.props.login(res.data)
+            })
+            .catch((err) => console.log(err));
+    }
+
     render() {
         return (
             <div>
-                <Navigation/>
+                <Navigation />
                 <Switch>
-                    <Route path='/' component={Home} exact/>
+                    <Route path='/' component={Home} exact />
                     <Route path='/login' component={LoginPage} />
                     <Route path='/register' component={RegisterPage} />
                 </Switch>
@@ -24,4 +38,4 @@ class App extends React.Component {
     }
 }
 
-export default App
+export default connect(null, { login })(App)

@@ -2,7 +2,11 @@ import React from 'react'
 
 class Home extends React.Component{
     render(){
-        return <h1>Ini Home</h1>
+        return(
+            <div style={{marginTop: '70px'}}>
+                <h1>Ini Home</h1>
+            </div>
+        )
     }
 }
 
