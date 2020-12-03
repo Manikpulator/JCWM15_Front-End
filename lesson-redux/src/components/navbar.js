@@ -48,7 +48,7 @@ class Navigation extends React.Component {
                                 :
                                 <>
                                     <Dropdown.Item as={Link} to='/login' >Login</Dropdown.Item>
-                                    <Dropdown.Item>Register</Dropdown.Item>
+                                    <Dropdown.Item as={Link} to='/register' >Register</Dropdown.Item>
                                 </>
                             }
                         </Dropdown.Menu>

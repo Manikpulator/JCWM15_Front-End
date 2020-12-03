@@ -15,12 +15,14 @@ import Content1 from './page/content1'
 import Content2 from './page/content2'
 import Home from './page/home'
 import Login from './page/login'
+import Register from './page/register'
 import NotFound from './page/404NotFound'
 
 // import action login
 import { login } from './action'
 
 class App extends React.Component {
+    // keep login
     componentDidMount(){
         Axios.get(`http://localhost:2000/users?username=${localStorage.username}`)
         .then((res) => this.props.login(res.data[0]))
@@ -35,7 +37,8 @@ class App extends React.Component {
                     <Route path='/' component={Home} exact />
                     <Route path='/content1' component={Content1} />
                     <Route path='/content2' component={Content2} />
-                    <Route path='/Login' component={Login} />
+                    <Route path='/login' component={Login} />
+                    <Route path='/register' component={Register} />
                     <Route path='*' component={NotFound} />
                 </Switch>
             </div>
