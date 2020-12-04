@@ -40,6 +40,7 @@ class LoginPage extends React.Component {
     };
 
     render() {
+        // console.log(this)
         if (this.props.username) return <Redirect to="/" />
         // object destructuring untuk local state
         const { loginError, visible } = this.state
@@ -68,7 +69,7 @@ class LoginPage extends React.Component {
                             <InputGroup.Prepend style={{ cursor: 'pointer' }}
                                 onClick={() => this.setState({ visible: !visible })}>
                                 <InputGroup.Text id="basic-addon1" style={{ width: '45px', display: 'flex', justifyContent: 'center' }}>
-                                    <i className={visible ? "fas fa-eye" : "fas fa-eye-slash"} style={{ textalign: 'center' }}></i>
+                                    <i className={visible ? "fas fa-eye" : "fas fa-eye-slash"}></i>
                                 </InputGroup.Text>
                             </InputGroup.Prepend>
                             <FormControl
