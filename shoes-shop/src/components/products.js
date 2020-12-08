@@ -38,7 +38,9 @@ class Products extends React.Component {
                                     <Card.Title style={{}}>{item.name}</Card.Title>
                                     <Card.Text style={{}}>{item.description}</Card.Text>
                                     <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
-                                        <Button variant="warning" >Wish List</Button>
+                                        <Button style={{width: '80px'}} variant="warning" >
+                                            <i className="far fa-heart"></i>
+                                        </Button>
                                         <Button variant="primary" as={Link} to={`/detail?id=${item.id}`}>Buy Now</Button>
                                     </div>
                                 </Card.Body>
