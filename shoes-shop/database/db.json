@@ -520,14 +520,39 @@
       "username": "user",
       "password": "user",
       "role": "user",
-      "email": "user@gmail.com"
+      "email": "user@gmail.com",
+      "cart": []
     },
     {
       "username": "frengky",
       "password": "frengky1!",
       "role": "user",
       "email": "frengky@gmail.com",
-      "id": 3
+      "id": 3,
+      "cart": [
+        {
+          "name": "ADIDAS PERFORMANCE MARQUEE MID - VEGAS",
+          "image": "https://kickz.akamaized.net/en/media/images/p/1200/adidas_performance-MARQUEE_MID_VEGAS-legend_ink_ftwr_white_flash_orange-1.jpg",
+          "category": "Man, Sport, Basketball",
+          "brand": "ADIDAS",
+          "colour": "legend ink/ftwr white/flash orange",
+          "price": 1345650,
+          "size": 41,
+          "qty": 2,
+          "total": 2691300
+        },
+        {
+          "name": "VANS UA ERA (MIX & MATCH)",
+          "image": "https://kickz.akamaized.net/en/media/images/p/1200/vans-UA_Era_Mix__Match-cadmium_yellow_tidepool-1.jpg",
+          "category": "Women, Converse",
+          "brand": "VANS",
+          "colour": "cadmium yellow/tidepool",
+          "price": 678956,
+          "size": 40,
+          "qty": 5,
+          "total": 3394780
+        }
+      ]
     }
   ]
 }

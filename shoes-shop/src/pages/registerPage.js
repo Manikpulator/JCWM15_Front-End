@@ -62,7 +62,8 @@ class RegisterPage extends React.Component {
                             username: username,
                             password: password,
                             role: "user",
-                            email: email
+                            email: email,
+                            cart: []
                         })
                             .then((res) => {
                                 console.log(res.data)
