@@ -32,7 +32,10 @@ class Navigation extends React.Component {
                     <Nav className="mr-auto">
                         <Nav.Link as={Link} to='/' style={{ color: 'white' }}>Home</Nav.Link>
                     </Nav>
-                    <Dropdown style={{ marginRight: '40px' }}>
+                    <Link to='/cart'>
+                        <i className="fas fa-shopping-cart" style={{ fontSize: '22px', color: 'white' }}></i>
+                    </Link>
+                    <Dropdown style={{ margin: '0 40px' }}>
                         <Dropdown.Toggle variant="success" id="dropdown-basic">
                             {this.props.username || "username"}
                         </Dropdown.Toggle>
