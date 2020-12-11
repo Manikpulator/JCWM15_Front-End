@@ -9,7 +9,8 @@ import {
     Table,
     Button,
     Image,
-    Form
+    Form,
+    Modal
 } from 'react-bootstrap'
 
 class CartPage extends React.Component {
@@ -17,13 +18,18 @@ class CartPage extends React.Component {
         super(props)
         this.state = {
             selectedIndex: null,
-            newQty: 0
+            newQty: 0,
+            reqPayment: false,
+            total: 0,
+            reqPass: false,
+            errPass: false
         }
     }
 
     handleDelete = (index) => {
         // console.log(index)
         let tempCart = this.props.cart
+
         // syntax splice untuk menghapus
         tempCart.splice(index, 1)
         console.log(tempCart)
@@ -53,14 +59,16 @@ class CartPage extends React.Component {
         // mengganti data pesanan suatu produk berdasarkan index
         // tempProduct adalah tempat penyimpanan sementara data product yang ingin diedit
         let tempProduct = this.props.cart[index]
+
         // mengganti data cart untuk product yang ingin diganti
         tempProduct.qty = parseInt(this.state.newQty)
         tempProduct.total = this.state.newQty * this.props.cart[index].price
         console.log(tempProduct)
 
-        // memasukan object pesanan product yang baru, ke dalam array cart
+        // memasukan object pesanan product yang baru, ke dalam array cart yang lama
         // tempCart adalah tempat penampungan sementara data cart user yang lama
         let tempCart = this.props.cart
+
         // syntax splice untuk mereplace
         tempCart.splice(index, 1, tempProduct)
         console.log(tempCart)
@@ -74,11 +82,32 @@ class CartPage extends React.Component {
                 Axios.get(`http://localhost:2000/users/${localStorage.id}`)
                     .then((res) => {
                         this.props.login(res.data)
-                        this.setState({ selectedIndex: null})
+                        this.setState({ selectedIndex: null })
                     })
                     .catch((err) => console.log(err))
             })
             .catch((err) => console.log(err))
+    }
+
+    totalPrice = () => {
+        let counter = 0
+        this.props.cart.map(item => counter += item.total)
+        // console.log(counter)
+        return counter
+    }
+
+    confPayment = () => {
+        let nominal = this.refs.payment.value
+        console.log(nominal)
+        this.setState({ reqPayment: false })
+    }
+
+    confPass = () => {
+        let pass = this.refs.pass.value
+        console.log(pass)
+        if (pass !== this.props.pass) return this.setState({ errPass: true })
+
+        this.setState({ reqPayment: true, reqPass: false})
     }
 
     renderTHead = () => {
@@ -154,18 +183,69 @@ class CartPage extends React.Component {
     }
 
     render() {
-        if(!this.props.id) return <Redirect to='/login'/>
-        
+        const { reqPayment, reqPass, errPass } = this.state
+        if (!this.props.id) return <Redirect to='/login' />
+
         // console.log(this.props.cart)
         // console.log(this.state.selectedIndex)
         // console.log(this.state.newQty)
+
         return (
             <div style={{ marginTop: '70px', padding: '0 15px' }}>
-                <h1>Ini Cart Page</h1>
+                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <h1>Ini Cart Page</h1>
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                        <Button onClick={() => this.setState({ reqPass: true })} variant="success">Checkout</Button>
+                    </div>
+                </div>
                 <Table striped bordered hover variant="dark">
                     {this.renderTHead()}
                     {this.renderTBody()}
                 </Table>
+                <h1 style={{ textAlign: 'right' }}>Total: IDR {this.totalPrice().toLocaleString()}</h1>
+                <Modal show={reqPayment} onHide={() => this.setState({ reqPayment: false })}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Payment</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form.Control ref="payment" type="number" placeholder="Tolong Masukan Jumlah Uang Untuk Pembayaran:" />
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={() => this.setState({ reqPayment: false })}>
+                            Close
+                        </Button>
+                        <Button variant="primary" onClick={this.confPayment} >
+                            Confirm
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+                <Modal show={reqPass} onHide={() => this.setState({ reqPass: false })}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Confirmation</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form.Control ref="pass" placeholder="Tolong Masukan Password Untuk Melanjutkan Pembayaran:" />
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={() => this.setState({ reqPass: false })}>
+                            Close
+                        </Button>
+                        <Button variant="primary" onClick={this.confPass} >
+                            Confirm
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+                <Modal show={errPass} onHide={() => this.setState({ errPass: false })}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Error!</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Wrong Password</Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={() => this.setState({ errPass: false })}>
+                            Close
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
             </div>
         )
     }
@@ -174,7 +254,8 @@ class CartPage extends React.Component {
 const mapStateToProps = (state) => {
     return {
         cart: state.user.cart,
-        id: state.user.id
+        id: state.user.id,
+        pass: state.user.password
     }
 }
 
