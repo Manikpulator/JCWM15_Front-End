@@ -529,30 +529,58 @@
       "role": "user",
       "email": "frengky@gmail.com",
       "id": 3,
-      "cart": [
+      "cart": []
+    }
+  ],
+  "history": [
+    {
+      "username": "frengky",
+      "date": "12/11/2020, 3:34:06 PM",
+      "total": 5680000,
+      "product": [
         {
-          "name": "NIKE AIR ZOOM-TYPE",
-          "image": "https://kickz.akamaized.net/en/media/images/p/1200/nike-AIR_ZOOM_TYPE-BLACK_SUMMIT_WHITE_MENTA_ORANGE_TRANCE-2.jpg",
+          "name": "JORDAN WESTBROOK ONE TAKE",
+          "image": "https://kickz.akamaized.net/en/media/images/p/1200/JORDAN_WESTBROOK_ONE_TAKE-WHITE_WHITE_BLACK_RAGE_GREEN-2.jpg",
           "category": "Men, Sport, Sneaker",
-          "brand": "NIKE",
-          "colour": "BLACK/SUMMIT WHITE-MENTA-ORANGE TRANCE",
-          "price": 2500000,
-          "size": 39,
+          "brand": "JORDAN",
+          "colour": "WHITE/WHITE-BLACK-RAGE GREEN",
+          "price": 1500000,
+          "size": 41,
           "qty": 2,
-          "total": 5000000
+          "total": 3000000
         },
         {
-          "name": "VANS UA ERA (MIX & MATCH)",
-          "image": "https://kickz.akamaized.net/en/media/images/p/1200/vans-UA_Era_Mix__Match-cadmium_yellow_tidepool-1.jpg",
-          "category": "Women, Converse",
-          "brand": "VANS",
-          "colour": "cadmium yellow/tidepool",
-          "price": 678956,
+          "name": "JORDAN AIR JORDAN 14 RETRO",
+          "image": "https://kickz.akamaized.net/en/media/images/p/1200/Air_Jordan_14_Retro-BLACK_GYM_RED_WHITE_OFF_WHITE-2.jpg",
+          "category": "Men, Sport, Sneaker",
+          "brand": "JORDAN",
+          "colour": "BLACK/GYM RED-WHITE-OFF WHITE",
+          "price": 2680000,
           "size": 41,
           "qty": 1,
-          "total": 678956
+          "total": 2680000
         }
-      ]
+      ],
+      "id": 1
+    },
+    {
+      "username": "frengky",
+      "date": "12/11/2020, 3:37:51 PM",
+      "total": 1500000,
+      "product": [
+        {
+          "name": "JORDAN WESTBROOK ONE TAKE",
+          "image": "https://kickz.akamaized.net/en/media/images/p/1200/JORDAN_WESTBROOK_ONE_TAKE-WHITE_WHITE_BLACK_RAGE_GREEN-2.jpg",
+          "category": "Men, Sport, Sneaker",
+          "brand": "JORDAN",
+          "colour": "WHITE/WHITE-BLACK-RAGE GREEN",
+          "price": 1500000,
+          "size": 41,
+          "qty": 1,
+          "total": 1500000
+        }
+      ],
+      "id": 2
     }
   ]
 }

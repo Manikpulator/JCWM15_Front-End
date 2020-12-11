@@ -42,7 +42,10 @@ class Navigation extends React.Component {
                         <Dropdown.Menu>
                             {this.props.username
                                 ?
-                                <Dropdown.Item onClick={this.handleLogout}>Logout</Dropdown.Item>
+                                <>
+                                    <Dropdown.Item onClick={this.handleLogout}>Logout</Dropdown.Item>
+                                    <Dropdown.Item as={Link} to='/history' >History</Dropdown.Item>
+                                </>
                                 :
                                 <>
                                     <Dropdown.Item as={Link} to='/login' >Login</Dropdown.Item>

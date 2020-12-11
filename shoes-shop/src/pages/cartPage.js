@@ -20,9 +20,11 @@ class CartPage extends React.Component {
             selectedIndex: null,
             newQty: 0,
             reqPayment: false,
-            total: 0,
             reqPass: false,
-            errPass: false
+            errPass: false,
+            errPayment: false,
+            cartEmpty: false,
+            toHistory: false
         }
     }
 
@@ -96,18 +98,59 @@ class CartPage extends React.Component {
         return counter
     }
 
+    checkOut = () => {
+        if (this.props.cart.length === 0) return this.setState({ cartEmpty: true })
+
+        this.setState({ reqPass: true })
+    }
+
     confPayment = () => {
         let nominal = this.refs.payment.value
-        console.log(nominal)
-        this.setState({ reqPayment: false })
+        // console.log(nominal)
+        let total = this.totalPrice()
+        // console.log(total)
+
+        if (nominal < total) return this.setState({ errPayment: true })
+
+        // siapkan data
+        let history = {
+            username: this.props.username,
+            date: new Date().toLocaleString(),
+            total: total,
+            product: this.props.cart
+        }
+        console.log(history)
+
+        // update data history user
+        Axios.post('http://localhost:2000/history', history)
+            .then((res) => {
+                console.log(res.data)
+
+                // kosongkan cart dan update database
+                Axios.patch(`http://localhost:2000/users/${localStorage.id}`, { cart: [] })
+                    .then((res) => {
+                        console.log(res.data)
+
+                        // update redux
+                        Axios.get(`http://localhost:2000/users/${localStorage.id}`)
+                            .then((res) => {
+                                console.log(res.data)
+                                this.props.login(res.data)
+                                this.setState({ reqPayment: false, toHistory: true })
+                            })
+                            .catch((err) => console.log(err))
+                    })
+                    .catch((err) => console.log(err))
+            })
+            .catch((err) => console.log(err))
     }
 
     confPass = () => {
         let pass = this.refs.pass.value
-        console.log(pass)
+        // console.log(pass)
         if (pass !== this.props.pass) return this.setState({ errPass: true })
 
-        this.setState({ reqPayment: true, reqPass: false})
+        this.setState({ reqPayment: true, reqPass: false })
     }
 
     renderTHead = () => {
@@ -183,19 +226,20 @@ class CartPage extends React.Component {
     }
 
     render() {
-        const { reqPayment, reqPass, errPass } = this.state
+        const { reqPayment, reqPass, errPass, errPayment, cartEmpty, toHistory } = this.state
+
+        // redirect ke login kalau user belum login
         if (!this.props.id) return <Redirect to='/login' />
 
-        // console.log(this.props.cart)
-        // console.log(this.state.selectedIndex)
-        // console.log(this.state.newQty)
+        // redirect ke history kalau user berhasil check out
+        if (toHistory) return <Redirect to='/history' />
 
         return (
             <div style={{ marginTop: '70px', padding: '0 15px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <h1>Ini Cart Page</h1>
                     <div style={{ display: 'flex', alignItems: 'center' }}>
-                        <Button onClick={() => this.setState({ reqPass: true })} variant="success">Checkout</Button>
+                        <Button onClick={this.checkOut} variant="success">Checkout</Button>
                     </div>
                 </div>
                 <Table striped bordered hover variant="dark">
@@ -203,22 +247,6 @@ class CartPage extends React.Component {
                     {this.renderTBody()}
                 </Table>
                 <h1 style={{ textAlign: 'right' }}>Total: IDR {this.totalPrice().toLocaleString()}</h1>
-                <Modal show={reqPayment} onHide={() => this.setState({ reqPayment: false })}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Payment</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <Form.Control ref="payment" type="number" placeholder="Tolong Masukan Jumlah Uang Untuk Pembayaran:" />
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={() => this.setState({ reqPayment: false })}>
-                            Close
-                        </Button>
-                        <Button variant="primary" onClick={this.confPayment} >
-                            Confirm
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
                 <Modal show={reqPass} onHide={() => this.setState({ reqPass: false })}>
                     <Modal.Header closeButton>
                         <Modal.Title>Confirmation</Modal.Title>
@@ -246,6 +274,44 @@ class CartPage extends React.Component {
                         </Button>
                     </Modal.Footer>
                 </Modal>
+                <Modal show={reqPayment} onHide={() => this.setState({ reqPayment: false })}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Payment</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form.Control ref="payment" type="number" placeholder="Tolong Masukan Jumlah Uang Untuk Pembayaran:" />
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={() => this.setState({ reqPayment: false })}>
+                            Close
+                        </Button>
+                        <Button variant="primary" onClick={this.confPayment} >
+                            Confirm
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+                <Modal show={errPayment} onHide={() => this.setState({ errPayment: false })}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Error!</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Jumlah Uang Kurang Dari Total Cart</Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={() => this.setState({ errPayment: false })}>
+                            Close
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+                <Modal show={cartEmpty} onHide={() => this.setState({ cartEmpty: false })}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Error!</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Make Sure Your Cart Is Not Empty!</Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={() => this.setState({ cartEmpty: false })}>
+                            Close
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
             </div>
         )
     }
@@ -255,7 +321,8 @@ const mapStateToProps = (state) => {
     return {
         cart: state.user.cart,
         id: state.user.id,
-        pass: state.user.password
+        pass: state.user.password,
+        username: state.user.username
     }
 }
 
