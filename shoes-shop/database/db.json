@@ -529,7 +529,19 @@
       "role": "user",
       "email": "frengky@gmail.com",
       "id": 3,
-      "cart": []
+      "cart": [
+        {
+          "name": "JORDAN WESTBROOK ONE TAKE",
+          "image": "https://kickz.akamaized.net/en/media/images/p/1200/JORDAN_WESTBROOK_ONE_TAKE-WHITE_WHITE_BLACK_RAGE_GREEN-2.jpg",
+          "category": "Men, Sport, Sneaker",
+          "brand": "JORDAN",
+          "colour": "WHITE/WHITE-BLACK-RAGE GREEN",
+          "price": 1500000,
+          "size": 40,
+          "qty": 5,
+          "total": 7500000
+        }
+      ]
     }
   ],
   "history": [

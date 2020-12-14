@@ -317,6 +317,7 @@ class CartPage extends React.Component {
     }
 }
 
+// mapStateToProps digunakan ketika kita ingin mengambil data dari redux
 const mapStateToProps = (state) => {
     return {
         cart: state.user.cart,
