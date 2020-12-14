@@ -529,19 +529,7 @@
       "role": "user",
       "email": "frengky@gmail.com",
       "id": 3,
-      "cart": [
-        {
-          "name": "JORDAN WESTBROOK ONE TAKE",
-          "image": "https://kickz.akamaized.net/en/media/images/p/1200/JORDAN_WESTBROOK_ONE_TAKE-WHITE_WHITE_BLACK_RAGE_GREEN-2.jpg",
-          "category": "Men, Sport, Sneaker",
-          "brand": "JORDAN",
-          "colour": "WHITE/WHITE-BLACK-RAGE GREEN",
-          "price": 1500000,
-          "size": 40,
-          "qty": 5,
-          "total": 7500000
-        }
-      ]
+      "cart": []
     }
   ],
   "history": [
@@ -593,6 +581,74 @@
         }
       ],
       "id": 2
+    },
+    {
+      "username": "user",
+      "date": "12/14/2020, 10:28:18 AM",
+      "total": 1086786,
+      "product": [
+        {
+          "name": "PLEASURES UTOPIA CROCS BY PLEASURES",
+          "image": "https://kickz.akamaized.net/en/media/images/p/1200/Utopia_Crocs_by_PLEASURES-Black-1.jpg",
+          "category": "Man, Sandals, Flip Flop ",
+          "brand": "PLEASURES",
+          "colour": "BLACK",
+          "price": 543000,
+          "size": 40,
+          "qty": 1,
+          "total": 543000
+        },
+        {
+          "name": "VANS UA CLASSIC SLIP-ON (BREAST CANCER)",
+          "image": "https://kickz.akamaized.net/en/media/images/p/1200/vans-UA_Classic_Slip_On_Breast_Cancer-Breast_Cancer_nude_check_true_white-1.jpg",
+          "category": "Women, Converse",
+          "brand": "VANS",
+          "colour": "cadmium yellow/tidepool",
+          "price": 543786,
+          "size": 41,
+          "qty": 1,
+          "total": 543786
+        }
+      ],
+      "id": 3
+    },
+    {
+      "username": "user",
+      "date": "12/14/2020, 10:41:37 AM",
+      "total": 5961900,
+      "product": [
+        {
+          "name": "NIKE W AIR MAX 90",
+          "image": "https://kickz.akamaized.net/en/media/images/p/1200/nike-W_AIR_MAX_90-WHITE_PARTICLE_GREY_ROSE_BLACK-2.jpg",
+          "category": "Women, Sport, Sneaker",
+          "brand": "NIKE",
+          "colour": "WHITE/PARTICLE GREY-ROSE-BLACK",
+          "price": 1987300,
+          "size": 41,
+          "qty": 3,
+          "total": 5961900
+        }
+      ],
+      "id": 4
+    },
+    {
+      "username": "frengky",
+      "date": "12/14/2020, 1:37:10 PM",
+      "total": 7500000,
+      "product": [
+        {
+          "name": "JORDAN WESTBROOK ONE TAKE",
+          "image": "https://kickz.akamaized.net/en/media/images/p/1200/JORDAN_WESTBROOK_ONE_TAKE-WHITE_WHITE_BLACK_RAGE_GREEN-2.jpg",
+          "category": "Men, Sport, Sneaker",
+          "brand": "JORDAN",
+          "colour": "WHITE/WHITE-BLACK-RAGE GREEN",
+          "price": 1500000,
+          "size": 40,
+          "qty": 5,
+          "total": 7500000
+        }
+      ],
+      "id": 5
     }
   ]
 }

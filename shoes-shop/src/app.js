@@ -15,14 +15,24 @@ import CartPage from './pages/cartPage'
 import HistoryPage from './pages/history'
 
 // import action login
-import { login } from './actions'
+import { login, getHistory } from './actions'
 
 class App extends React.Component {
+    
+    // keep login
     componentDidMount() {
         Axios.get(`http://localhost:2000/users/${localStorage.id}`)
             .then((res) => {
                 console.log(res.data);
                 this.props.login(res.data)
+
+                // keep get history
+                Axios.get(`http://localhost:2000/history?username=${this.props.username}`)
+                    .then((res) => {
+                        console.log(res.data)
+                        this.props.getHistory(res.data)
+                    })
+                    .catch((err) => console.log(err))
             })
             .catch((err) => console.log(err));
     }
@@ -44,4 +54,10 @@ class App extends React.Component {
     }
 }
 
-export default connect(null, { login })(App)
+const mapStateToProps = (state) => {
+    return{
+        username: state.user.username
+    }
+}
+
+export default connect(mapStateToProps, { login, getHistory })(App)
