@@ -13,12 +13,14 @@ import RegisterPage from './pages/registerPage'
 import DetailProduct from './pages/detailProduct'
 import CartPage from './pages/cartPage'
 import HistoryPage from './pages/history'
+import HistoryAdmin from './pages/historyAdmin'
+import NotFound from './pages/error404'
 
 // import action login
 import { login, getHistory } from './actions'
 
 class App extends React.Component {
-    
+
     // keep login
     componentDidMount() {
         Axios.get(`http://localhost:2000/users/${localStorage.id}`)
@@ -38,6 +40,23 @@ class App extends React.Component {
     }
 
     render() {
+        console.log(this.props.role)
+        if (this.props.role === 'admin') {
+            return (
+                <div>
+                    <Navigation />
+                    <Switch>
+                        <Route path='/' component={Home} exact />
+                        <Route path='/login' component={LoginPage} />
+                        <Route path='/register' component={RegisterPage} />
+                        <Route path='/detail' component={DetailProduct} />
+                        <Route path='/history_admin' component={HistoryAdmin} />
+                        <Route path='*' component={NotFound} />
+
+                    </Switch>
+                </div>
+            )
+        }
         return (
             <div>
                 <Navigation />
@@ -48,6 +67,7 @@ class App extends React.Component {
                     <Route path='/detail' component={DetailProduct} />
                     <Route path='/cart' component={CartPage} />
                     <Route path='/history' component={HistoryPage} />
+                    <Route path='*' component={NotFound} />
                 </Switch>
             </div>
         )
@@ -55,8 +75,9 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return{
-        username: state.user.username
+    return {
+        username: state.user.username,
+        role: state.user.role
     }
 }
 

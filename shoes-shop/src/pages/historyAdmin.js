@@ -1,8 +1,5 @@
 import React from 'react'
 import Axios from 'axios'
-import { connect } from 'react-redux'
-
-import { Redirect } from 'react-router-dom'
 
 import {
     Accordion,
@@ -11,15 +8,19 @@ import {
     Card
 } from 'react-bootstrap'
 
-// import action
-import { getHistory } from '../actions'
+class HistoryAdmin extends React.Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            data: []
+        }
+    }
 
-class HistoryPage extends React.Component {
     componentDidMount() {
-        Axios.get(`http://localhost:2000/history?username=${this.props.username}`)
+        Axios.get(`http://localhost:2000/history`)
             .then((res) => {
                 console.log(res.data)
-                this.props.getHistory(res.data)
+                this.setState({data: res.data})
             })
             .catch((err) => console.log(err))
     }
@@ -27,7 +28,7 @@ class HistoryPage extends React.Component {
     renderTBody = () => {
         return (
             <Accordion>
-                {this.props.history.map((item, index) => {
+                {this.state.data.map((item, index) => {
                     return (
                         <Card>
                             <Accordion.Toggle as={Card.Header} eventKey={index + 1}>
@@ -72,24 +73,14 @@ class HistoryPage extends React.Component {
         )
     }
 
-    render() {
-        if(!this.props.username) return <Redirect to='/login'/>
-        
-        console.log(this.props.history)
+    render() {        
         return (
             <div style={{ marginTop: '70px', padding: '0 20px' }}>
-                <h1>History Transaction</h1>
+                <h1>History Transaction Admin</h1>
                 {this.renderTBody()}
             </div>
         )
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        history: state.history,
-        username: state.user.username
-    }
-}
-
-export default connect(mapStateToProps, { getHistory })(HistoryPage)
+export default HistoryAdmin

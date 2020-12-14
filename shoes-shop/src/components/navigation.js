@@ -44,7 +44,7 @@ class Navigation extends React.Component {
                                 ?
                                 <>
                                     <Dropdown.Item onClick={this.handleLogout}>Logout</Dropdown.Item>
-                                    <Dropdown.Item as={Link} to='/history' >History</Dropdown.Item>
+                                    <Dropdown.Item as={Link} to={this.props.role === 'user' ? '/history' : '/history_admin'} >History</Dropdown.Item>
                                 </>
                                 :
                                 <>
@@ -62,7 +62,8 @@ class Navigation extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        username: state.user.username
+        username: state.user.username,
+        role: state.user.role
     }
 }
 
